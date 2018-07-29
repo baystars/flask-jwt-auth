@@ -1,5 +1,4 @@
-# project/server/__init__.py
-
+# -*- mode: python -*- -*- coding: utf-8 -*-
 import os
 
 from flask import Flask
