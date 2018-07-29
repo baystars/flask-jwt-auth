@@ -10,3 +10,4 @@ migrations
 *.coverage
 .DS_Store
 *.idea
+*.db
