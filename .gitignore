@@ -1,4 +1,12 @@
+.env
+__pycache__
+env.sh
+migrations
+
 *~
 *.bak
 *.orig
 *.pyc
+*.coverage
+.DS_Store
+*.idea
