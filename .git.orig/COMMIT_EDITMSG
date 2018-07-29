@@ -1,0 +1,14 @@
+add
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Sumiya Sakoda <sakoda@kessel.oroshi.toyoake.or.jp>
+#
+# ブランチ jwt-auth
+# コミット予定の変更点:
+#	deleted:    .python-version
+#	new file:   Makefile
+#	new file:   PREPARE.md
+#	new file:   PREPARE.md~
+#	renamed:    project/tests/test__config.py -> project/tests/test_config.py
+#
