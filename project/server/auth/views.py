@@ -47,6 +47,7 @@ class RegisterAPI(MethodView):
                 'message': 'User already exists. Please Log in.',
             }
             return make_response(jsonify(responseObject)), 202
+
 class LoginAPI(MethodView):
     """
     User Login Resource
