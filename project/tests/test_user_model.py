@@ -6,7 +6,6 @@ from project.server.models import User
 from project.tests.base import BaseTestCase
 
 class TestUserModel(BaseTestCase):
-
     def test_encode_auth_token(self):
         user = User(
             email='test@test.com',
@@ -28,7 +27,7 @@ class TestUserModel(BaseTestCase):
         self.assertTrue(isinstance(auth_token, bytes))
         # return user.id -> 1
         self.assertTrue(User.decode_auth_token(
-            auth_token.decode("utf-8") ) == 1)
+            auth_token.decode("utf-8") ) == user.id)
 
 if __name__ == '__main__':
     unittest.main()

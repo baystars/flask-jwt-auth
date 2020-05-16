@@ -104,6 +104,7 @@ class TestAuthBlueprint(BaseTestCase):
     def test_non_registered_user_login(self):
         """ Test for login of non-registered user """
         with self.client:
+            # without user registration
             response = login_user(self)
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'fail')
@@ -119,7 +120,7 @@ class TestAuthBlueprint(BaseTestCase):
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'success')
             self.assertTrue(data['data'] is not None)
-            self.assertTrue(data['data']['email'] == 'joe@gmail.com')
+            self.assertTrue(data['data']['email'] == DEFAULT_EMAIL)
             self.assertTrue(data['data']['admin'] is 'true' or 'false')
             self.assertEqual(response.status_code, 200)
 
@@ -171,7 +172,7 @@ class TestAuthBlueprint(BaseTestCase):
             self.assertTrue(resp_login.content_type == 'application/json')
             self.assertEqual(resp_login.status_code, 200)
             # invalid token logout
-            time.sleep(6)
+            time.sleep(self.app.config.get('TOKEN_EXPIRED', 5)+1)
             response = logout_user(self, resp_login)
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'fail')
@@ -224,6 +225,24 @@ class TestAuthBlueprint(BaseTestCase):
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'fail')
             self.assertTrue(data['message'] == 'Token blacklisted. Please log in again.')
+            self.assertEqual(response.status_code, 401)
+
+    def test_user_status_malformed_bearer_token(self):
+        """ Test for user status with malformed bearer token"""
+        with self.client:
+            resp_register = register_user(self)
+            # Bearer Header without space
+            response = self.client.get(
+                '/auth/status',
+                headers=dict(
+                    Authorization='Bearer' + json.loads(
+                        resp_register.data.decode()
+                    )['auth_token']
+                )
+            )
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 'fail')
+            self.assertTrue(data['message'] == 'Bearer token malformed.')
             self.assertEqual(response.status_code, 401)
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@ import datetime
 
 import jwt
 
-from project.server import app, db, bcrypt
+from project.server import (app, db, bcrypt)
 
 class User(db.Model):
     """ User Model for storing user related details """
@@ -30,7 +30,8 @@ class User(db.Model):
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
+                'exp': datetime.datetime.utcnow()\
+                + datetime.timedelta(days=0, seconds=app.config.get('TOKEN_EXPIRED', 60)),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
