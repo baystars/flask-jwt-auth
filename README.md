@@ -1,10 +1,9 @@
 # flask-jwt-auth
 
+* based on [Token\-Based Authentication With Flask – Real Python](https://realpython.com/token-based-authentication-with-flask/)
 * PyJWTを使ったサンプル
 * unittestが秀逸
-* User/BlacklistToke model
-
-[Token\-Based Authentication With Flask – Real Python](https://realpython.com/token-based-authentication-with-flask/)
+* User/BlacklistToken model
 
 ## セットアップ
 
