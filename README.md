@@ -17,6 +17,7 @@ git
     git clone https://github.com/realpython/flask-jwt-auth.git
     cd flask-jwt-auth
     git checkout tags/1.0.0 -b jwt-auth
+<<<<<<< HEAD
     git remote set-url origin https://github.com/higebobo/flask-jwt-auth.githttps://github.com/higebobo/flask-jwt-auth.git
 
 ## config
@@ -74,3 +75,6 @@ GET Request with Token
     }
     
 
+=======
+    git remote set-url origin https://github.com/higebobo/flask-jwt-auth.git
+>>>>>>> 6344424b925e8a53936f881e6f811cd49b5bca35
